@@ -7,6 +7,7 @@ use panic_halt as _;
 fn main() -> ! {
     let dp = arduino_hal::Peripherals::take().unwrap();
     let pins = arduino_hal::pins!(dp);
+    let mut serial = arduino_hal::default_serial!(dp, pins, 9600);
 
     /*
      * For examples (and inspiration), head to
@@ -19,9 +20,11 @@ fn main() -> ! {
      */
 
     let mut led = pins.d13.into_output();
+    let button = pins.d9.into_pull_up_input();
 
     loop {
-        led.toggle();
-        arduino_hal::delay_ms(1000);
+        if (button.is_low()) {
+            ufmt::uwriteln!(&mut serial, "Button has been pressed");
+        }
     }
 }
