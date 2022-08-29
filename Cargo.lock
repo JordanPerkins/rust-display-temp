@@ -3,6 +3,14 @@
 version = 3
 
 [[package]]
+name = "ag-lcd"
+version = "0.1.2"
+source = "git+https://github.com/mjhouse/ag-lcd#1bd9f117a52f3c5e1227f7c88b7860bef4bf54e0"
+dependencies = [
+ "embedded-hal",
+]
+
+[[package]]
 name = "arduino-hal"
 version = "0.1.0"
 source = "git+https://github.com/rahix/avr-hal?rev=1aacefb335517f85d0de858231e11055d9768cdf#1aacefb335517f85d0de858231e11055d9768cdf"
@@ -150,6 +158,7 @@ dependencies = [
 name = "rust-display-temp"
 version = "0.1.0"
 dependencies = [
+ "ag-lcd",
  "arduino-hal",
  "embedded-hal",
  "nb 0.1.3",
